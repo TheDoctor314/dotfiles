@@ -1,0 +1,19 @@
+# alias ls='ls --color=auto'
+# alias la='ls -a'
+# alias ll='ls -alh'
+
+alias ls='ls --color=auto'
+alias la='exa -a'
+alias ll='exa -alh'
+
+alias gdb='gdb --quiet'
+alias netcheck='ping -c 4 8.8.8.8'
+alias open='xdg-open'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias cg='cd $(git root)'
+
+alias mv='mv -i'
+alias rm='rm -i'
+alias cp='cp -i'
+
+alias please='echo sudo $(fc -ln -1) && sudo $(fc -ln -1)'
