@@ -152,6 +152,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 
 Plug 'joshdick/onedark.vim'
+Plug 'sainnhe/sonokai'
 
 " Lsp support
 Plug 'neovim/nvim-lspconfig'
@@ -196,6 +197,9 @@ colorscheme onedark
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
   \ 'colorscheme': 'onedark',
+  \ 'component' : {
+  \   'filename': '%f'
+  \ },
   \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
