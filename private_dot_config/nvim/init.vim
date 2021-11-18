@@ -138,6 +138,11 @@ nnoremap <C-f> :Files<cr>
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+let g:sneak#label = 1
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
+nnoremap <C-c> :call sneak#cancel()
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin manager - vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -165,6 +170,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 Plug 'kyazdani42/nvim-tree.lua'
 
+Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
