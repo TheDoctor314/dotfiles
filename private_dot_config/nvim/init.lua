@@ -164,4 +164,12 @@ require('lualine').setup{
         theme = onedark,
         -- theme = sonokai
     },
+    sections = {
+        lualine_c = {
+            {
+                'filename',
+                path = 1,
+            }
+        }
+    }
 }
