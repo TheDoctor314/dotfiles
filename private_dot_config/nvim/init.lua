@@ -131,7 +131,6 @@ Plug 'sainnhe/sonokai'
 
 " Lsp support
 Plug 'neovim/nvim-lspconfig'
-Plug 'ojroques/nvim-lspfuzzy'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'nvim-lua/lsp_extensions.nvim'
@@ -157,9 +156,9 @@ vim.g.sonokai_style = 'atlantis'
 -- Modules
 -----------------------------------------------------------------------
 require('lsp')
-require('lspfuzzy').setup{}
 require('cmp_config')
 require('nvim-tree').setup{}
+
 require('lualine').setup{
     options = {
         theme = onedark,
