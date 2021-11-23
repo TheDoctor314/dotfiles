@@ -7,6 +7,7 @@ local set = vim.opt
 -----------------------------------------------------------------------
 vim.g.mapleader = ','
 vim.g['sneak#label'] = 1
+vim.g['sneak#use_ic_scs'] = 1
 
 set.history = 500
 
