@@ -126,6 +126,8 @@ Plug 'ibhagwan/fzf-lua'
 Plug 'vijaymarupudi/nvim-fzf'
 
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'rafcamlet/tabline-framework.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 Plug 'joshdick/onedark.vim'
 Plug 'sainnhe/sonokai'
@@ -173,4 +175,7 @@ require('lualine').setup{
             }
         }
     }
+}
+require('tabline_framework').setup{
+    render = require('tabline_framework.examples.simple'),
 }
