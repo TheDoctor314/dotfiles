@@ -194,8 +194,7 @@ mode "resize" {
 
 bindsym $mod+Shift+r mode "resize"
 
-#default_border none
-for_window [class=".*"] border pixel 0
+default_border none
 
 for_window [class="mpv"] floating enable
 
@@ -216,7 +215,7 @@ bindsym $mod+t exec ~/.config/i3/scripts/open_default.sh
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-bindsym $mod+r exec --no-startup-id "rofi -modi window,run,ssh,drun -show drun"
+bindsym $mod+r exec --no-startup-id "rofi -modi window,run,combi,drun -show combi -combi-modi window,drun"
 
 # Run on start-up
 #
