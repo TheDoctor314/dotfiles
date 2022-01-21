@@ -26,8 +26,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>ca', [[<cmd>lua require('fzf-lua').lsp_code_actions()<CR>]], opts)
   buf_set_keymap('n', '<leader>lx', [[<cmd>lua require('fzf-lua').lsp_references()<CR>]], opts)
   -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>ld', [[<cmd>lua require('fzf-lua').lsp_document_diagnostics()<CR>]], opts)
   buf_set_keymap('n', '<space>s', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]], opts)
   buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
@@ -61,7 +61,7 @@ vim.cmd [[autocmd CursorHold *.rs :lua require'lsp_extensions'.inlay_hints{ only
 -- Show line diagnostics in hover window
 -- NOTE: This setting is global and should only be set once
 vim.o.updatetime = 500
-vim.cmd [[autocmd CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
+vim.cmd [[autocmd CursorHoldI * lua vim.diagnostic.open_float({scope="l"})]]
 
 ---- Disable the virtual text for diagnostics
 --vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
