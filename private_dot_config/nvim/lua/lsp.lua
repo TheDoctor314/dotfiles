@@ -51,6 +51,9 @@ nvim_lsp.rust_analyzer.setup {
             cargo = {
                 allFeatures = true,
             },
+            checkOnSave = {
+                command = "clippy",
+            },
         },
     },
 }
