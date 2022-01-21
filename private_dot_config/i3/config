@@ -39,7 +39,7 @@ client.background       #323F4F #323F4F #323F4F #323F4F #323F4F
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/scripts/locker.sh
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -100,7 +100,7 @@ bindsym $mod+w layout toggle all
 bindsym $mod+Shift+space floating toggle
 
 # scratchpad
-bindsym $mod+m move scratchpad
+bindsym $mod+m border pixel 1; move scratchpad
 bindsym $mod+o scratchpad show
 
 # change focus between tiling / floating windows
@@ -201,7 +201,7 @@ for_window [class="mpv"] floating enable
 gaps inner 10
 gaps outer 0
 
-# Start i3bar to display a workspace bar (plus the system information i3status
+# Start i3bar to display a workspace bar (plus the system information i3status-rs
 # finds out, if available)
 bar {
     status_command i3status-rs
