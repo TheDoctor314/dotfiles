@@ -43,8 +43,3 @@ source /usr/share/fzf/completion.zsh
 if [[ ! -o login ]]; then
     eval $(starship init zsh)
 fi
-
-# only for i3 sessions
-if [[ $DESKTOP_SESSION = i3 ]]; then
-   (cat ~/.cache/wal/sequences &)
-fi
