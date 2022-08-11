@@ -151,10 +151,10 @@ vim.fn['plug#end']()
 -----------------------------------------------------------------------
 set.termguicolors = true
 vim.cmd('syntax on')
-vim.cmd('colorscheme onedark')
+-- vim.cmd('colorscheme onedark')
 
 vim.g.sonokai_style = 'atlantis'
--- vim.cmd('colorscheme sonokai')
+vim.cmd('colorscheme sonokai')
 -----------------------------------------------------------------------
 -- Modules
 -----------------------------------------------------------------------
@@ -164,8 +164,9 @@ require('nvim-tree').setup{}
 
 require('lualine').setup{
     options = {
-        theme = onedark,
-        -- theme = sonokai
+        --theme = onedark,
+        theme = sonokai,
+        disabled_filetypes = {},
     },
     sections = {
         lualine_c = {
