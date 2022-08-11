@@ -1,9 +1,9 @@
 #add my own binaries to the path just in case
 #typeset make sure there are no duplicates
 typeset -U path
-path+="$HOME/.bin"
 path+="$HOME/.local/bin"
 path+="$HOME/.cargo/bin"
+path+="$HOME/.emacs.d/bin"
 
 fpath+="$ZDOTDIR/.zfunc"
 
