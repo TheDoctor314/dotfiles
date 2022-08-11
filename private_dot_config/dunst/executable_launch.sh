@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$HOME/.cache/wal/colors.sh"
+source "$HOME/.config/dunst/colors.sh"
 
 pkill dunst
 dunst \
