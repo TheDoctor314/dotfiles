@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gd', [[<cmd>lua require('fzf-lua').lsp_definitions()<CR>]], opts)
   buf_set_keymap('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<leader>li', [[<cmd>lua require('fzf-lua').lsp_implementations()<CR>]], opts)
-  buf_set_keymap('n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<leader>ls', [[<cmd>lua require('fzf-lua').grep_curbuf()<CR>]], opts)
   -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   -- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -43,23 +43,44 @@ nvim_lsp.clangd.setup {
     capabilities = capabilities,
 }
 
-nvim_lsp.rust_analyzer.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        ["rust-analyzer"] = {
-            cargo = {
-                allFeatures = true,
-            },
-            checkOnSave = {
-                command = "clippy",
+local rt = require('rust-tools')
+
+rt.setup({
+    server = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+            ["rust-analyzer"] = {
+                cargo = {
+                    allFeatures = true,
+                },
+                checkOnSave = {
+                    command = "clippy",
+                },
             },
         },
     },
-}
+    tools = {
+        inlay_hints = {
+            only_current_line = true,
+        },
+    },
+})
 
--- Rust analyzer inlay hints
-vim.cmd [[autocmd CursorHold *.rs :lua require'lsp_extensions'.inlay_hints{ only_current_line = true, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }]]
+-- nvim_lsp.rust_analyzer.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         ["rust-analyzer"] = {
+--             cargo = {
+--                 allFeatures = true,
+--             },
+--             checkOnSave = {
+--                 command = "clippy",
+--             },
+--         },
+--     },
+-- }
 
 -- Show line diagnostics in hover window
 -- NOTE: This setting is global and should only be set once
