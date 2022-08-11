@@ -206,7 +206,7 @@ gaps outer 0
 bar {
     status_command i3status-rs
 
-    font pango:Roboto 12, Font Awesome 5 Free Solid 12
+    font pango:Roboto 12, Font Awesome 5 Free Solid 14
     strip_workspace_numbers yes
 
     colors {
@@ -223,9 +223,13 @@ bindsym $mod+e exec nautilus
 bindsym $mod+t exec ~/.config/i3/scripts/open_default.sh
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec wezterm
 
 bindsym $mod+r exec --no-startup-id "rofi -modi window,run,combi,drun -show combi -combi-modi window,drun"
+
+# Close the last notification by dunst
+bindsym $mod+n exec dunstctl close
 
 # Run on start-up
 #
