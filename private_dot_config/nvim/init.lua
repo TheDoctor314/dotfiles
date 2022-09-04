@@ -143,6 +143,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'justinmk/vim-sneak'
+Plug 'kylechui/nvim-surround'
 ]])
 
 vim.fn['plug#end']()
@@ -180,3 +181,5 @@ require('lualine').setup{
 require('tabline_framework').setup{
     render = require('tabline_framework.examples.simple'),
 }
+
+require('nvim-surround').setup{}
