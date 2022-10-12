@@ -29,9 +29,6 @@ compinit
 # End of lines added by compinstall
 
 PROMPT="%F{green}%n:%F{blue}%B%2~%b%F{green}%#%f "
-BROWSER=brave
-
-DELTA_PAGER=bat
 
 source ~/.zsh/.custom-alias
 

@@ -7,7 +7,8 @@ alias la='exa -a'
 alias ll='exa -alh'
 
 alias gdb='gdb --quiet'
-alias netcheck='ping -c 4 archlinux.org'
+# replaced by script
+# alias netcheck='ping -c 4 archlinux.org'
 alias open='xdg-open'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias cg='cd $(git root)'
