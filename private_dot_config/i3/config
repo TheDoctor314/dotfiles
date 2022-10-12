@@ -194,11 +194,11 @@ mode "resize" {
 
 bindsym $mod+Shift+r mode "resize"
 
-default_border none
+for_window [all] border pixel 0
 
 for_window [class="mpv"] floating enable
 
-gaps inner 10
+gaps inner 5
 gaps outer 0
 
 # Start i3bar to display a workspace bar (plus the system information i3status-rs
@@ -206,7 +206,7 @@ gaps outer 0
 bar {
     status_command i3status-rs
 
-    font pango:Roboto 12, Font Awesome 5 Free Solid 14
+    font pango:Roboto 12, Font Awesome 6 Free Regular 12
     strip_workspace_numbers yes
 
     colors {
@@ -239,7 +239,6 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet &
 exec --no-startup-id numlockx on
 
-exec --no-startup-id wal -R -n
 exec_always --no-startup-id ~/.fehbg &
 #exec_always --no-startup-id ~/.config/polybar/launch.sh &
 exec_always --no-startup-id ~/.config/dunst/launch.sh &
