@@ -1,4 +1,7 @@
+[theme]
 theme = "modern"
+
+[icons]
 icons = "awesome6"
 
 [[block]]
