@@ -10,7 +10,6 @@ alias gdb='gdb --quiet'
 # replaced by script
 # alias netcheck='ping -c 4 archlinux.org'
 alias open='xdg-open'
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias cg='cd $(git root)'
 
 alias mv='mv -i'
@@ -18,3 +17,11 @@ alias rm='rm -i'
 alias cp='cp -i'
 
 alias please='echo sudo $(fc -ln -1) && sudo $(fc -ln -1)'
+
+cpr() {
+  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
+}
+
+mvr() {
+  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$@"
+}
