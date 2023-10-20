@@ -197,6 +197,7 @@ bindsym $mod+Shift+r mode "resize"
 for_window [all] border pixel 0
 
 for_window [class="mpv"] floating enable
+for_window [class="feh"] floating enable
 
 gaps inner 5
 gaps outer 0
@@ -221,6 +222,12 @@ bar {
 bindsym $mod+p exec brave
 bindsym $mod+e exec nautilus
 bindsym $mod+t exec ~/.config/i3/scripts/open_default.sh
+
+# screenshots (using maim)
+# select a region to copy to clipboard and save to file
+bindsym $mod+Print exec --no-startup-id "maim -s | tee ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png | xclip -selection clipboard -t image/png"
+# screenshots active window
+bindsym Print exec --no-startup-id "maim --window $(xdotool getactivewindow) ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png"
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
