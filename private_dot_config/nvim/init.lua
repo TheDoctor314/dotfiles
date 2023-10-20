@@ -134,11 +134,12 @@ Plug 'sainnhe/sonokai'
 
 " Lsp support
 Plug 'neovim/nvim-lspconfig'
-Plug 'simrat39/rust-tools.nvim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+
+Plug 'simrat39/rust-tools.nvim'
 
 Plug 'kyazdani42/nvim-tree.lua'
 

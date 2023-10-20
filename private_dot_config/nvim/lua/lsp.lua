@@ -30,12 +30,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>ld', [[<cmd>lua require('fzf-lua').lsp_document_diagnostics()<CR>]], opts)
   buf_set_keymap('n', '<space>s', [[<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]], opts)
-  buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opts)
 end
 
 -- Enable some language servers with the capabilities offered by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities();
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities);
+local capabilities = require('cmp_nvim_lsp').default_capabilities();
 
 -- Do not forget to use the on_attach function
 nvim_lsp.clangd.setup {
@@ -56,6 +55,10 @@ rt.setup({
                 },
                 checkOnSave = {
                     command = "clippy",
+                    target = {
+                        "x86_64-unknown-linux-gnu",
+                        "wasm32-unknown-unknown",
+                    }
                 },
             },
         },
