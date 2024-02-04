@@ -1,15 +1,10 @@
 add_newline = false
 
-format = "$directory$git_branch$git_status$cmd_duration$line_break$time $shlvl$character"
+format = "$directory$git_branch$git_status$cmd_duration$line_break$shlvl$character"
 
 [directory]
 truncation_length = 4
 truncation_symbol = "../"
-
-[time]
-disabled = false
-format = '[\[$time\]]($style)'
-time_format = "%R"
 
 [shlvl]
 disabled = false

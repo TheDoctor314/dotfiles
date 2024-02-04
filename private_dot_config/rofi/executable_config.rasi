@@ -1,0 +1,7 @@
+configuration {
+    kb-row-down:    "Down,Control+j";
+    kb-row-up:    "Up,Control+k";
+    kb-remove-to-eol:   "";
+    kb-accept-entry:    "Return,KP_Enter";
+}
+@import "~/.config/rofi/spotlight-dark.rasi"

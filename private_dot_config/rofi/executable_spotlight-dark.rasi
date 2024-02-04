@@ -1,0 +1,119 @@
+/*******************************************************************************
+ * MACOS SPOTLIGHT LIKE DARK THEME FOR ROFI
+ * User                 : ulises-jeremias
+ * Theme Repo           : https://github.com/ulises-jeremias/rofi-themes
+ *******************************************************************************/
+
+configuration {
+    font            : "Hack Nerd Font Mono 12";
+    display-ssh     : "";
+    display-run     : "";
+    display-drun    : "";
+    display-window  : "";
+    display-combi   : "";
+
+}
+* {
+    bg-color: #242424E6;
+    fg-color: #DEDEDE;
+    tooltip-fg-color: #7E7E7E;
+    selected-bg-color: #0860f2E6;
+    selected-fg-color: #FFFFFF;
+    insensitive-bg-color: #7E7E7E80;
+    insensitive-fg-color: #7E7E7E;
+
+    active-background   : @bg-color;
+    normal-background   : @bg-color;
+    normal-foreground   : @fg-color;
+
+    alternate-normal-background   : @bg-color;
+    alternate-normal-foreground   : @fg-color;
+
+    selected-normal-background  : @selected-bg-color;
+    selected-normal-foreground  : @selected-fg-color;
+
+    text-color          : @fg-color;
+}
+#window {
+    location            : center;
+    width               : 640;
+    border-radius       : 8;
+    background-color    : @bg-color;
+}
+#mainbox {
+    spacing             : 0;
+    background-color    : transparent;
+}
+#inputbar {
+    font                : "Hack Nerd Font Mono 24";
+    background-color    : transparent;
+    children:         [ prompt,entry,num-filtered-rows,textbox-num-sep,num-rows,case-indicator ];
+}
+#prompt {
+    text-color          : @tooltip-fg-color;
+    font                : inherit;
+    background-color    : inherit;
+    margin              : 16 16 24 20;
+}
+#entry {
+    font                : inherit;
+    background-color    : inherit;
+    placeholder         : "Search";
+    placeholder-color   : @insensitive-fg-color;
+    margin              : 11 0;
+    text-color          : @fg-color;
+}
+#case-indicator {
+    margin              : 8 8 8 24;
+    font                : inherit;
+    background-color    : inherit;
+}
+#message {
+    padding             : 0;
+    border              : 2 0 0;
+    border-color        : @insensitive-bg-color;
+    background-color    : @insensitive-bg-color;
+}
+#textbox {
+    padding             : 8 24;
+    background-color    : inherit;
+}
+#listview {
+    lines               : 10;
+    columns             : 1;
+    fixed-height        : false;
+    spacing             : 0;
+    scrollbar           : false;
+    background-color    : transparent;
+    border              : 2 0 0;
+    border-color        : @insensitive-bg-color;
+}
+#element {
+    padding             : 8 24;
+    background-color    : transparent;
+}
+#element normal normal {
+}
+#element normal urgent {
+}
+#element normal active {
+    text-color          : @selected-bg-color;
+}
+#element selected normal {
+    background-color    : @selected-bg-color;
+    text-color          : @selected-fg-color;
+}
+#element selected urgent {
+}
+#element selected active {
+    background-color    : @selected-bg-color;
+    text-color          : @selected-fg-color;
+}
+#element-icon {
+    size                : 1em;
+    margin              : 0 16 0 0;
+    background-color    : transparent;
+}
+#element-text {
+    background-color    : transparent;
+}

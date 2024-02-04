@@ -114,6 +114,14 @@ map('n', 'F', '<Plug>Sneak_S', {})
 -----------------------------------------------------------------------
 -- Plugins
 -----------------------------------------------------------------------
+vim.cmd([[
+let data_dir = stdpath('data') . '/site'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+]])
+
 local plug_dir = vim.fn.stdpath('data') .. '/plugged'
 vim.fn['plug#begin'](plug_dir)
 

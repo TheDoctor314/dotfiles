@@ -32,11 +32,11 @@ PROMPT="%F{green}%n:%F{blue}%B%2~%b%F{green}%#%f "
 
 source ~/.zsh/.custom-alias
 
+# Enable starship
+if [[ -o interactive ]]; then
+    eval "$(starship init zsh)"
+fi
+
 # for fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-
-# Enable starship
-if [[ ! -o login ]]; then
-    eval $(starship init zsh)
-fi
