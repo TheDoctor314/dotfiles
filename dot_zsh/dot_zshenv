@@ -13,3 +13,7 @@ fignore+=(lock)
 EDITOR=vim
 BROWSER=brave
 DELTA_PAGER=bat
+
+# for `ssh-add` to connect to `ssh-agent` autostarted using
+# `ssh-agent.service`
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
