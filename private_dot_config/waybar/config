@@ -5,7 +5,7 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": [],
+    "modules-left": ["custom/launcher"],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["idle_inhibitor", "pulseaudio", "network", "battery", "clock", "tray"],
     // Modules configuration
@@ -76,6 +76,11 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "custom/launcher":{
+        "format": " ",
+        "on-click": "rofi -show drun",
+        "on-click-right": "killall rofi"
     },
 }
 
