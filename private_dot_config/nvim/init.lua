@@ -49,6 +49,7 @@ set.incsearch = true-- Makes search act like search in modern browsers
 
 set.lazyredraw = true -- Don't redraw while executing macros (good performance config)
 
+set.magic = true -- For regular expressions turn magic on
 set.showmatch = true -- Show matching brackets when text indicator is over them
 set.matchtime = 2 -- How many tenths of a second to blink when matching brackets
 
