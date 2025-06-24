@@ -37,6 +37,17 @@ if [[ -o interactive ]]; then
     eval "$(starship init zsh)"
 fi
 
-# for fzf
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+install_os_specific() {
+    # detect distro and symlink
+    [[ "$OSTYPE" = linux* ]] || exit
+    [[ -e /etc/os-release ]] || exit
+    # dumb-parse /etc/os-release ourselves, to avoid sourcing
+    IFS== read -r _ id < <(grep ^ID= /etc/os-release)
+    case "$id" in
+        arch) source "${ZDOTDIR:-${HOME}}/os-specific/$id.zsh";;
+        fedora) source "${ZDOTDIR:-${HOME}}/os-specific/$id.zsh";;
+    esac
+}
+
+install_os_specific
+
