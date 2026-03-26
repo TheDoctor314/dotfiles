@@ -1,5 +1,3 @@
-local nvim_lsp = require('lspconfig')
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -11,8 +9,7 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local opts = { noremap=true, silent=false }
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
+-- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', [[<cmd>lua require('fzf-lua').lsp_definitions()<CR>]], opts)
   buf_set_keymap('n', 'gd', [[<cmd>lua require('fzf-lua').lsp_definitions()<CR>]], opts)
   buf_set_keymap('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -37,53 +34,16 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities();
 
 -- Do not forget to use the on_attach function
-nvim_lsp.clangd.setup {
+vim.lsp.config('clangd', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
-
-local rt = require('rust-tools')
-
-rt.setup({
-    server = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {
-            ["rust-analyzer"] = {
-                cargo = {
-                    allFeatures = true,
-                },
-                checkOnSave = {
-                    command = "clippy",
-                    target = {
-                        "x86_64-unknown-linux-gnu",
-                        "wasm32-unknown-unknown",
-                    }
-                },
-            },
-        },
-    },
-    tools = {
-        inlay_hints = {
-            only_current_line = true,
-        },
-    },
 })
 
--- nvim_lsp.rust_analyzer.setup {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     settings = {
---         ["rust-analyzer"] = {
---             cargo = {
---                 allFeatures = true,
---             },
---             checkOnSave = {
---                 command = "clippy",
---             },
---         },
---     },
--- }
+vim.lsp.enable('clangd')
+
+if vim.lsp.inlay_hint then
+    vim.lsp.inlay_hint.enable(true)
+end
 
 -- Show line diagnostics in hover window
 -- NOTE: This setting is global and should only be set once
