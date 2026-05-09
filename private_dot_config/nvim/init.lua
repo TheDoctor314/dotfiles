@@ -1,6 +1,5 @@
---local utils = require('utils')
 local map = vim.api.nvim_set_keymap
-local set = vim.opt
+local set = vim.o
 
 -----------------------------------------------------------------------
 -- options
@@ -106,12 +105,8 @@ map('n', '<C-k>', '<C-w><C-k>', opts)
 map('n', '<C-l>', '<C-w><C-l>', opts)
 
 -- FzfLua bindings
-map('n', '<C-f>', "<cmd>lua require('fzf-lua').files()<CR>", opts)
-map('n', '<C-g>', "<cmd>lua require('fzf-lua').git_files()<CR>", opts)
-
--- Sneak mappings
-map('n', 'f', '<Plug>Sneak_s', {})
-map('n', 'F', '<Plug>Sneak_S', {})
+vim.keymap.set('n', '<C-f>', function() FzfLua.files() end)
+vim.keymap.set('n', '<C-g>', function() FzfLua.git_files() end)
 -----------------------------------------------------------------------
 -- Plugins
 -----------------------------------------------------------------------
@@ -132,7 +127,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'rust-lang/rust.vim'
 
 Plug 'ibhagwan/fzf-lua'
-Plug 'vijaymarupudi/nvim-fzf'
 
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'rafcamlet/tabline-framework.nvim'
@@ -193,3 +187,6 @@ require('tabline_framework').setup{
 }
 
 require('nvim-surround').setup{}
+require('fzf-lua').setup{}
+FzfLua.register_ui_select()
+
