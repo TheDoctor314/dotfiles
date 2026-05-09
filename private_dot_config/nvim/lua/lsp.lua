@@ -45,14 +45,3 @@ vim.g.rustaceanvim = {
 if vim.lsp.inlay_hint then
     vim.lsp.inlay_hint.enable(true)
 end
-
--- Show line diagnostics in hover window
--- NOTE: This setting is global and should only be set once
-vim.o.updatetime = 500
-vim.cmd [[autocmd CursorHoldI * lua vim.diagnostic.open_float({scope="l"})]]
-
----- Disable the virtual text for diagnostics
---vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
---    virtual_text = false,
---    update_in_insert = true,
---})

@@ -107,6 +107,11 @@ map('n', '<C-l>', '<C-w><C-l>', opts)
 -- FzfLua bindings
 vim.keymap.set('n', '<C-f>', function() FzfLua.files() end)
 vim.keymap.set('n', '<C-g>', function() FzfLua.git_files() end)
+
+-- toggle inline diagnostics
+vim.keymap.set('n', '<leader>dv', function()
+    vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+end)
 -----------------------------------------------------------------------
 -- Plugins
 -----------------------------------------------------------------------
