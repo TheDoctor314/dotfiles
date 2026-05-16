@@ -173,16 +173,16 @@ local join_keys = function (keys)
 end
 
 -- Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-hl.bind(join_keys({mainMod, "Return"}), hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + Q", hl.dsp.window.kill())
-hl.bind(mainMod .. " + CTRL + Q", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + space", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(browser))
+hl.bind(join_keys({ mainMod, "Return" }), hl.dsp.exec_cmd(terminal))
+hl.bind(join_keys({ mainMod, "Q" }), hl.dsp.window.kill())
+hl.bind(join_keys({ mainMod, "CTRL", "Q" }), hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(join_keys({ mainMod, "E" }), hl.dsp.exec_cmd(fileManager))
+hl.bind(join_keys({ mainMod, "space" }), hl.dsp.window.float({ action = "toggle" }))
+hl.bind(join_keys({ mainMod, "R" }), hl.dsp.exec_cmd(menu))
+hl.bind(join_keys({ mainMod, "P" }), hl.dsp.exec_cmd(browser))
 
 local default_apps = {"firefox", "alacritty", "code", "thunar" }
-hl.bind(mainMod .. " + T", function ()
+hl.bind(join_keys({ mainMod, "T" }), function ()
     local w = hl.get_active_workspace()
 
     if w ~= nil and default_apps[w.id] ~= nil then
@@ -193,8 +193,8 @@ end)
 -- hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(clipboard))
+hl.bind(join_keys({ mainMod, "F" }), hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
+hl.bind(join_keys({ mainMod, "V" }), hl.dsp.exec_cmd(clipboard))
 
 -- tabbed windows
 -- TODO
@@ -215,29 +215,29 @@ hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(clipboard))
 -- hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "d" }))
 
 -- Cycle focus
-hl.bind(mainMod .. " + h", hl.dsp.window.cycle_next({ next = false }))
-hl.bind(mainMod .. " + l", hl.dsp.window.cycle_next())
+hl.bind(join_keys({ mainMod, "h" }), hl.dsp.window.cycle_next({ next = false }))
+hl.bind(join_keys({ mainMod, "l" }), hl.dsp.window.cycle_next())
 
 -- Move through workspaces
-hl.bind(mainMod .. " + k", hl.dsp.focus({workspace = "e-1"}))
-hl.bind(mainMod .. " + j", hl.dsp.focus({workspace = "e+1"}))
+hl.bind(join_keys({ mainMod, "k" }), hl.dsp.focus({workspace = "e-1"}))
+hl.bind(join_keys({ mainMod, "j" }), hl.dsp.focus({workspace = "e+1"}))
 
 -- Switch between current and previous workspace
-hl.bind(mainMod .. " + Escape", hl.dsp.focus({workspace = "previous"}))
+hl.bind(join_keys({ mainMod, "Escape" }), hl.dsp.focus({workspace = "previous"}))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
-    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+    hl.bind(join_keys({ mainMod, key }),             hl.dsp.focus({ workspace = i}))
+    hl.bind(join_keys({ mainMod, "SHIFT", key }),     hl.dsp.window.move({ workspace = i }))
 end
 
 -- move current workspace to next monitor
-hl.bind(mainMod .. " + CTRL + m", hl.dsp.workspace.move({ monitor = "+1" }))
+hl.bind(join_keys({ mainMod, "CTRL", "m" }), hl.dsp.workspace.move({ monitor = "+1" }))
 
 -- Switch to a submap called `resize`.
-hl.bind(mainMod .. " + SHIFT + R", hl.dsp.submap("resize"))
+hl.bind(join_keys({ mainMod, "SHIFT", "R" }), hl.dsp.submap("resize"))
 
 -- Start a submap called "resize".
 hl.define_submap("resize", function()
@@ -261,22 +261,22 @@ hl.define_submap("resize", function()
 end)
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(join_keys({ mainMod, "S" }),         hl.dsp.workspace.toggle_special("magic"))
+hl.bind(join_keys({ mainMod, "SHIFT", "S" }), hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- launch terminal on moving to empty scratchpad
 hl.workspace_rule({ workspace = "special:magic", on_created_empty = "[float] " .. terminal })
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(join_keys({ mainMod, "mouse_down" }), hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(join_keys({ mainMod, "mouse_up" }),   hl.dsp.focus({ workspace = "e+1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(join_keys({ mainMod, "mouse:272" }), hl.dsp.window.drag(),   { mouse = true })
+hl.bind(join_keys({ mainMod, "mouse:273" }), hl.dsp.window.resize(), { mouse = true })
 
 -- Close the last notification by dunst
-hl.bind(mainMod .. " + n", hl.dsp.exec_cmd("dunstctl close"))
+hl.bind(join_keys({ mainMod, "n" }), hl.dsp.exec_cmd("dunstctl close"))
 
 -- Run on startup
 hl.on("hyprland.start", function ()
