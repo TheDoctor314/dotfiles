@@ -128,6 +128,7 @@ vim.fn['plug#begin'](plug_dir)
 
 vim.cmd([[
 Plug 'tpope/vim-fugitive'
+Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'rust-lang/rust.vim'
 
@@ -193,5 +194,72 @@ require('tabline_framework').setup{
 
 require('nvim-surround').setup{}
 require('fzf-lua').setup{}
-FzfLua.register_ui_select()
+if FzfLua then
+    FzfLua.register_ui_select()
+end
 
+require('gitsigns').setup{
+  on_attach = function(bufnr)
+    local gitsigns = require('gitsigns')
+
+    local function gs_map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    gs_map('n', ']c', function()
+      if vim.wo.diff then
+        vim.cmd.normal({']c', bang = true})
+      else
+        gitsigns.nav_hunk('next')
+      end
+    end)
+
+    gs_map('n', '[c', function()
+      if vim.wo.diff then
+        vim.cmd.normal({'[c', bang = true})
+      else
+        gitsigns.nav_hunk('prev')
+      end
+    end)
+
+    -- Actions
+    gs_map('n', '<leader>hs', gitsigns.stage_hunk)
+    gs_map('n', '<leader>hr', gitsigns.reset_hunk)
+
+    gs_map('v', '<leader>hs', function()
+      gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end)
+
+    gs_map('v', '<leader>hr', function()
+      gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end)
+
+    -- gs_map('n', '<leader>hS', gitsigns.stage_buffer)
+    -- gs_map('n', '<leader>hR', gitsigns.reset_buffer)
+    gs_map('n', '<leader>hp', gitsigns.preview_hunk)
+    gs_map('n', '<leader>hi', gitsigns.preview_hunk_inline)
+
+    -- gs_map('n', '<leader>hb', function()
+    --   gitsigns.blame_line({ full = true })
+    -- end)
+    --
+    -- gs_map('n', '<leader>hd', gitsigns.diffthis)
+    --
+    -- gs_map('n', '<leader>hD', function()
+    --   gitsigns.diffthis('~')
+    -- end)
+    --
+    -- gs_map('n', '<leader>hQ', function() gitsigns.setqflist('all') end)
+    -- gs_map('n', '<leader>hq', gitsigns.setqflist)
+
+    -- Toggles
+    gs_map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+    gs_map('n', '<leader>tw', gitsigns.toggle_word_diff)
+
+    -- Text object
+    gs_map({'o', 'x'}, 'ih', gitsigns.select_hunk)
+  end
+}
