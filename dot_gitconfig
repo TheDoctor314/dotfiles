@@ -18,6 +18,7 @@
 	unstage = restore --staged
 	root = rev-parse --show-toplevel
     ds = diff --staged
+    ap = add -p
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
