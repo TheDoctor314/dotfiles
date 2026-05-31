@@ -37,7 +37,7 @@ if [[ -o interactive ]]; then
     eval "$(starship init zsh)"
 fi
 
-install_os_specific() {
+_install_os_specific() {
     # detect distro and symlink
     [[ "$OSTYPE" = linux* ]] || exit
     [[ -e /etc/os-release ]] || exit
@@ -49,7 +49,7 @@ install_os_specific() {
     esac
 }
 
-install_os_specific
+_install_os_specific
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -58,3 +58,16 @@ function y() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+_setup_fzf_git() {
+    # setup fzf-git bindings
+    if [ -f ${ZDOTDIR:-${HOME}}/fzf-git.sh/fzf-git.sh ]; then
+        source ${ZDOTDIR:-${HOME}}/fzf-git.sh/fzf-git.sh
+    else
+        echo "WARN: fzf-git bindings not present"
+        echo "To install: run 'git clone https://github.com/junegunn/fzf-git.sh.git' at ${ZDOTDIR:-${HOME}}"
+    fi
+    [ -f ${ZDOTDIR:-${HOME}}/fzf-git.sh/fzf-git.sh ] && source ${ZDOTDIR:-${HOME}}/fzf-git.sh/fzf-git.sh
+}
+
+_setup_fzf_git
