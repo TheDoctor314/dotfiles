@@ -174,7 +174,7 @@ end
 
 -- Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 hl.bind(join_keys({ mainMod, "Return" }), hl.dsp.exec_cmd(terminal))
-hl.bind(join_keys({ mainMod, "Q" }), hl.dsp.window.kill())
+hl.bind(join_keys({ mainMod, "Q" }), hl.dsp.window.close())
 hl.bind(join_keys({ mainMod, "CTRL", "Q" }), hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(join_keys({ mainMod, "E" }), hl.dsp.exec_cmd(fileManager))
 hl.bind(join_keys({ mainMod, "space" }), hl.dsp.window.float({ action = "toggle" }))
